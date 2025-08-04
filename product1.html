@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content Library Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ==== CSS ==== */
+    :root {
+      --primary: #FF6B00; /* WarriorPlus orange */
+      --secondary: #333;
+      --accent: #FF9500;
+      --dark: #1a1a2e;
+      --light: #f8f9fa;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header */
+    .header {
+      background: var(--primary);
+      color: white;
+      padding: 15px 0;
+      box-shadow: var(--shadow);
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 500;
+    }
+
+    /* Dashboard Layout */
+    .dashboard {
+      display: flex;
+      max-width: 1200px;
+      margin: 20px auto;
+      gap: 20px;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar-menu li {
+      margin-bottom: 15px;
+    }
+
+    .sidebar-menu a {
+      color: var(--secondary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      padding: 8px 10px;
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+
+    .sidebar-menu a:hover {
+      background: #fff5ee;
+      color: var(--primary);
+    }
+
+    .sidebar-menu i {
+      margin-right: 10px;
+      color: var(--primary);
+      width: 20px;
+      text-align: center;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+    }
+
+    /* Stats Cards */
+    .stats-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .stat-card h3 {
+      color: var(--primary);
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    /* Content Grid */
+    .content-grid {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .content-grid h2 {
+      margin-bottom: 20px;
+      color: var(--secondary);
+      display: flex;
+      align-items: center;
+    }
+
+    .content-grid h2 i {
+      margin-right: 10px;
+      color: var(--primary);
+    }
+
+    .content-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .content-card {
+      border: 1px solid #eee;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .content-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .content-img {
+      height: 150px;
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #777;
+      position: relative;
+    }
+
+    .content-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--primary);
+      color: white;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .content-info {
+      padding: 15px;
+    }
+
+    .content-info h3 {
+      margin-bottom: 10px;
+      color: var(--secondary);
+    }
+
+    .content-info p {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .action-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .action-btn:hover {
+      background: var(--accent);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .dashboard {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+      }
+      .stats-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <div class="header-container">
+      <div class="logo">Content Library Dashboard</div>
+      <div class="nav-links">
+        <a href="#"><i class="fas fa-home"></i> Home</a>
+        <a href="#"><i class="fas fa-chart-line"></i> Stats</a>
+        <a href="#"><i class="fas fa-download"></i> Downloads</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <ul class="sidebar-menu">
+        <li><a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+        <li><a href="#"><i class="fas fa-blog"></i> Blog Posts</a></li>
+        <li><a href="#"><i class="fab fa-github"></i> GitHub Repos</a></li>
+        <li><a href="#"><i class="fas fa-code"></i> Code Snippets</a></li>
+        <li><a href="#"><i class="fas fa-tags"></i> Categories</a></li>
+        <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Stats Cards -->
+      <div class="stats-cards">
+        <div class="stat-card">
+          <h3 id="total-blogs">500+</h3>
+          <p>Blog Posts</p>
+        </div>
+        <div class="stat-card">
+          <h3 id="total-repos">200+</h3>
+          <p>GitHub Repos</p>
+        </div>
+        <div class="stat-card">
+          <h3 id="categories">50+</h3>
+          <p>Categories</p>
+        </div>
+      </div>
+
+      <!-- Content Grid -->
+      <div class="content-grid">
+        <h2><i class="fas fa-star"></i> Featured Content</h2>
+        <div class="content-items">
+          <!-- Blog Post 1 -->
+          <div class="content-card">
+            <div class="content-img">
+              <i class="fas fa-blog" style="font-size: 40px;"></i>
+              <span class="content-badge">Blog</span>
+            </div>
+            <div class="content-info">
+              <h3>React Performance Guide</h3>
+              <p>Comprehensive guide to optimizing React applications with practical examples.</p>
+              <button class="action-btn" onclick="viewContent('react-blog')">
+                <i class="fas fa-eye"></i> View Post
+              </button>
+            </div>
+          </div>
+
+          <!-- GitHub Repo 1 -->
+          <div class="content-card">
+            <div class="content-img">
+              <i class="fab fa-github" style="font-size: 40px;"></i>
+              <span class="content-badge">Repo</span>
+            </div>
+            <div class="content-info">
+              <h3>Node.js API Starter</h3>
+              <p>Production-ready Node.js API template with authentication and docs.</p>
+              <button class="action-btn" onclick="viewContent('node-api')">
+                <i class="fas fa-code-branch"></i> View Repo
+              </button>
+            </div>
+          </div>
+
+          <!-- Code Snippet -->
+          <div class="content-card">
+            <div class="content-img">
+              <i class="fas fa-code" style="font-size: 40px;"></i>
+              <span class="content-badge">Snippet</span>
+            </div>
+            <div class="content-info">
+              <h3>CSS Grid Layouts</h3>
+              <p>Collection of responsive CSS Grid layouts for common UI patterns.</p>
+              <button class="action-btn" onclick="viewContent('css-grid')">
+                <i class="fas fa-copy"></i> Get Code
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second Content Grid -->
+      <div class="content-grid" style="margin-top: 20px;">
+        <h2><i class="fas fa-fire"></i> Most Popular</h2>
+        <div class="content-items">
+          <!-- Blog Post 2 -->
+          <div class="content-card">
+            <div class="content-img">
+              <i class="fas fa-blog" style="font-size: 40px;"></i>
+              <span class="content-badge">Blog</span>
+            </div>
+            <div class="content-info">
+              <h3>Python Data Analysis</h3>
+              <p>Complete tutorial on data analysis with Pandas and NumPy.</p>
+              <button class="action-btn" onclick="viewContent('python-blog')">
+                <i class="fas fa-eye"></i> View Post
+              </button>
+            </div>
+          </div>
+
+          <!-- GitHub Repo 2 -->
+          <div class="content-card">
+            <div class="content-img">
+              <i class="fab fa-github" style="font-size: 40px;"></i>
+              <span class="content-badge">Repo</span>
+            </div>
+            <div class="content-info">
+              <h3>React Component Library</h3>
+              <p>Collection of reusable React components with Storybook.</p>
+              <button class="action-btn" onclick="viewContent('react-lib')">
+                <i class="fas fa-code-branch"></i> View Repo
+              </button>
+            </div>
+          </div>
+
+          <!-- Blog Post 3 -->
+          <div class="content-card">
+            <div class="content-img">
+              <i class="fas fa-blog" style="font-size: 40px;"></i>
+              <span class="content-badge">Blog</span>
+            </div>
+            <div class="content-info">
+              <h3>DevOps Best Practices</h3>
+              <p>Essential DevOps practices for modern development teams.</p>
+              <button class="action-btn" onclick="viewContent('devops-blog')">
+                <i class="fas fa-eye"></i> View Post
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // Content viewing function
+    function viewContent(contentId) {
+      // Replace these with your actual content URLs
+      const contentUrls = {
+        'react-blog': 'https://example.com/blog/react-performance',
+        'node-api': 'https://github.com/example/node-api-starter',
+        'css-grid': 'https://example.com/snippets/css-grid',
+        'python-blog': 'https://example.com/blog/python-data',
+        'react-lib': 'https://github.com/example/react-component-library',
+        'devops-blog': 'https://example.com/blog/devops-practices'
+      };
+      
+      if (contentUrls[contentId]) {
+        window.open(contentUrls[contentId], '_blank');
+      } else {
+        alert('Content will be available soon!');
+      }
+    }
+  </script>
+</body>
+</html>

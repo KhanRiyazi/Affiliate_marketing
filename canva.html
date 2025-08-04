@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canva Design Portfolio | Rizwan Khan</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ==== CSS ==== */
+    :root {
+      --primary: #FF6B00; /* WarriorPlus orange */
+      --secondary: #333;
+      --accent: #FF9500;
+      --dark: #1a1a2e;
+      --light: #f8f9fa;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header */
+    .header {
+      background: var(--primary);
+      color: white;
+      padding: 15px 0;
+      box-shadow: var(--shadow);
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 500;
+    }
+
+    /* Dashboard Layout */
+    .dashboard {
+      display: flex;
+      max-width: 1200px;
+      margin: 20px auto;
+      gap: 20px;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar-menu li {
+      margin-bottom: 15px;
+    }
+
+    .sidebar-menu a {
+      color: var(--secondary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      padding: 8px 10px;
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+
+    .sidebar-menu a:hover {
+      background: #fff5ee;
+      color: var(--primary);
+    }
+
+    .sidebar-menu i {
+      margin-right: 10px;
+      color: var(--primary);
+      width: 20px;
+      text-align: center;
+    }
+
+    .sidebar-menu .active {
+      background: #fff5ee;
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+    }
+
+    /* Portfolio Header */
+    .portfolio-header {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .portfolio-header h2 {
+      margin: 0;
+      color: var(--secondary);
+      display: flex;
+      align-items: center;
+    }
+
+    .portfolio-header h2 i {
+      margin-right: 10px;
+      color: var(--primary);
+    }
+
+    .portfolio-filter {
+      display: flex;
+      gap: 10px;
+    }
+
+    .filter-btn {
+      background: #f0f0f0;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Design Grid */
+    .design-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .design-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all 0.3s;
+    }
+
+    .design-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .design-image {
+      height: 200px;
+      background: #f0f0f0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .design-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .design-card:hover .design-image img {
+      transform: scale(1.05);
+    }
+
+    .design-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--primary);
+      color: white;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .design-info {
+      padding: 15px;
+    }
+
+    .design-info h3 {
+      margin: 0 0 5px 0;
+      color: var(--secondary);
+    }
+
+    .design-info p {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .design-price {
+      font-weight: bold;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .design-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .action-btn {
+      flex: 1;
+      text-align: center;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .primary-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+    }
+
+    .primary-btn:hover {
+      background: var(--accent);
+    }
+
+    .secondary-btn {
+      background: #f0f0f0;
+      color: var(--secondary);
+      border: none;
+    }
+
+    .secondary-btn:hover {
+      background: #e0e0e0;
+    }
+
+    /* Design Categories */
+    .design-categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .category-tag {
+      background: #f0f0f0;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .category-tag:hover, .category-tag.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .dashboard {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+      }
+      .portfolio-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+      .portfolio-filter {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <div class="header-container">
+      <div class="logo">Rizwan Khan</div>
+      <div class="nav-links">
+        <a href="./index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="#" class="active"><i class="fas fa-palette"></i> Canva Designs</a>
+        <a href="#"><i class="fas fa-code"></i> Python Projects</a>
+        <a href="#"><i class="fas fa-wallet"></i> Earnings</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <ul class="sidebar-menu">
+        <li><a href="./index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+        <li><a href="#" class="active"><i class="fas fa-palette"></i> Canva Designs</a></li>
+        <li><a href="./python.html"><i class="fas fa-code"></i> Python Projects</a></li>
+        <li><a href="#"><i class="fas fa-link"></i> Affiliate Links</a></li>
+        <li><a href="#"><i class="fas fa-chart-line"></i> Analytics</a></li>
+        <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+      </ul>
+      
+      <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+        <h4 style="margin-bottom: 15px; color: var(--secondary);">Design Services</h4>
+        <ul style="list-style: none; padding: 0;">
+          <li style="margin-bottom: 10px;">
+            <a href="#" style="color: var(--secondary); text-decoration: none; display: block; padding: 5px 10px; border-radius: 4px; background: #fff5ee;">
+              <i class="fas fa-check" style="color: var(--primary); margin-right: 8px;"></i> Social Media Templates
+            </a>
+          </li>
+          <li style="margin-bottom: 10px;">
+            <a href="#" style="color: var(--secondary); text-decoration: none; display: block; padding: 5px 10px; border-radius: 4px;">
+              <i class="fas fa-check" style="color: var(--primary); margin-right: 8px;"></i> Business Branding
+            </a>
+          </li>
+          <li style="margin-bottom: 10px;">
+            <a href="#" style="color: var(--secondary); text-decoration: none; display: block; padding: 5px 10px; border-radius: 4px;">
+              <i class="fas fa-check" style="color: var(--primary); margin-right: 8px;"></i> Presentation Designs
+            </a>
+          </li>
+          <li style="margin-bottom: 10px;">
+            <a href="#" style="color: var(--secondary); text-decoration: none; display: block; padding: 5px 10px; border-radius: 4px;">
+              <i class="fas fa-check" style="color: var(--primary); margin-right: 8px;"></i> Marketing Materials
+            </a>
+          </li>
+          <li style="margin-bottom: 10px;">
+            <a href="#" style="color: var(--secondary); text-decoration: none; display: block; padding: 5px 10px; border-radius: 4px;">
+              <i class="fas fa-check" style="color: var(--primary); margin-right: 8px;"></i> Custom Designs
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Portfolio Header -->
+      <div class="portfolio-header">
+        <h2><i class="fas fa-palette"></i> My Canva Design Portfolio</h2>
+        <div class="portfolio-filter">
+          <button class="filter-btn active">All</button>
+          <button class="filter-btn">Templates</button>
+          <button class="filter-btn">Branding</button>
+          <button class="filter-btn">Social Media</button>
+        </div>
+      </div>
+
+      <!-- Design Categories -->
+      <div class="design-categories">
+        <div class="category-tag active">All Categories</div>
+        <div class="category-tag">Instagram</div>
+        <div class="category-tag">Facebook</div>
+        <div class="category-tag">LinkedIn</div>
+        <div class="category-tag">Presentations</div>
+        <div class="category-tag">Logos</div>
+        <div class="category-tag">Marketing</div>
+      </div>
+
+      <!-- Design Grid -->
+      <div class="design-grid">
+        <!-- Design 1 -->
+        <div class="design-card">
+          <div class="design-image">
+            <img src="https://via.placeholder.com/400x200/FF6B00/FFFFFF?text=Instagram+Pack" alt="Instagram Template Pack">
+            <div class="design-badge">Bestseller</div>
+          </div>
+          <div class="design-info">
+            <h3>Instagram Content Pack</h3>
+            <p>50+ customizable templates for posts, stories, and reels</p>
+            <div class="design-price">$29.99</div>
+            <div class="design-actions">
+              <button class="action-btn primary-btn" onclick="viewDesign('instagram-pack')">View Details</button>
+              <button class="action-btn secondary-btn" onclick="addToCart('instagram-pack')">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Design 2 -->
+        <div class="design-card">
+          <div class="design-image">
+            <img src="https://via.placeholder.com/400x200/FF9500/FFFFFF?text=Brand+Kit" alt="Brand Kit">
+            <div class="design-badge">New</div>
+          </div>
+          <div class="design-info">
+            <h3>Complete Brand Kit</h3>
+            <p>Logo, color palette, typography, and business card templates</p>
+            <div class="design-price">$49.99</div>
+            <div class="design-actions">
+              <button class="action-btn primary-btn" onclick="viewDesign('brand-kit')">View Details</button>
+              <button class="action-btn secondary-btn" onclick="addToCart('brand-kit')">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Design 3 -->
+        <div class="design-card">
+          <div class="design-image">
+            <img src="https://via.placeholder.com/400x200/FFB74D/FFFFFF?text=Presentation" alt="Presentation Templates">
+          </div>
+          <div class="design-info">
+            <h3>Professional Presentations</h3>
+            <p>30+ slide designs for business and pitch decks</p>
+            <div class="design-price">$34.99</div>
+            <div class="design-actions">
+              <button class="action-btn primary-btn" onclick="viewDesign('presentation')">View Details</button>
+              <button class="action-btn secondary-btn" onclick="addToCart('presentation')">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Design 4 -->
+        <div class="design-card">
+          <div class="design-image">
+            <img src="https://via.placeholder.com/400x200/FFD699/FFFFFF?text=Marketing+Set" alt="Marketing Set">
+          </div>
+          <div class="design-info">
+            <h3>Marketing Mega Bundle</h3>
+            <p>100+ templates for flyers, brochures, and social ads</p>
+            <div class="design-price">$79.99</div>
+            <div class="design-actions">
+              <button class="action-btn primary-btn" onclick="viewDesign('marketing-bundle')">View Details</button>
+              <button class="action-btn secondary-btn" onclick="addToCart('marketing-bundle')">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Design 5 -->
+        <div class="design-card">
+          <div class="design-image">
+            <img src="https://via.placeholder.com/400x200/FFE5C2/FFFFFF?text=YouTube+Thumbnails" alt="YouTube Thumbnails">
+          </div>
+          <div class="design-info">
+            <h3>YouTube Thumbnail Pack</h3>
+            <p>40+ attention-grabbing thumbnail templates</p>
+            <div class="design-price">$24.99</div>
+            <div class="design-actions">
+              <button class="action-btn primary-btn" onclick="viewDesign('youtube-thumbnails')">View Details</button>
+              <button class="action-btn secondary-btn" onclick="addToCart('youtube-thumbnails')">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Design 6 -->
+        <div class="design-card">
+          <div class="design-image">
+            <img src="https://via.placeholder.com/400x200/FFF3E0/FFFFFF?text=LinkedIn+Pack" alt="LinkedIn Pack">
+          </div>
+          <div class="design-info">
+            <h3>LinkedIn Content Pack</h3>
+            <p>Templates for posts, banners, and carousels</p>
+            <div class="design-price">$29.99</div>
+            <div class="design-actions">
+              <button class="action-btn primary-btn" onclick="viewDesign('linkedin-pack')">View Details</button>
+              <button class="action-btn secondary-btn" onclick="addToCart('linkedin-pack')">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // Filter functionality
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        // In a real app, this would filter the designs
+        alert(`Filtering by: ${btn.textContent}`);
+      });
+    });
+
+    // Category filter
+    document.querySelectorAll('.category-tag').forEach(tag => {
+      tag.addEventListener('click', () => {
+        document.querySelectorAll('.category-tag').forEach(t => t.classList.remove('active'));
+        tag.classList.add('active');
+        // In a real app, this would filter by category
+        alert(`Showing category: ${tag.textContent}`);
+      });
+    });
+
+    // View design details
+    function viewDesign(designId) {
+      const designNames = {
+        'instagram-pack': 'Instagram Content Pack',
+        'brand-kit': 'Complete Brand Kit',
+        'presentation': 'Professional Presentations',
+        'marketing-bundle': 'Marketing Mega Bundle',
+        'youtube-thumbnails': 'YouTube Thumbnail Pack',
+        'linkedin-pack': 'LinkedIn Content Pack'
+      };
+      alert(`Viewing details for: ${designNames[designId]}`);
+    }
+
+    // Add to cart functionality
+    function addToCart(designId) {
+      const designNames = {
+        'instagram-pack': 'Instagram Content Pack',
+        'brand-kit': 'Complete Brand Kit',
+        'presentation': 'Professional Presentations',
+        'marketing-bundle': 'Marketing Mega Bundle',
+        'youtube-thumbnails': 'YouTube Thumbnail Pack',
+        'linkedin-pack': 'LinkedIn Content Pack'
+      };
+      alert(`Added to cart: ${designNames[designId]}`);
+    }
+  </script>
+</body>
+</html>

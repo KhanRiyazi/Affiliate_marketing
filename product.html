@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details | Affiliate Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ==== CSS ==== */
+    :root {
+      --primary: #FF6B00; /* WarriorPlus orange */
+      --secondary: #333;
+      --accent: #FF9500;
+      --dark: #1a1a2e;
+      --light: #f8f9fa;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header */
+    .header {
+      background: var(--primary);
+      color: white;
+      padding: 15px 0;
+      box-shadow: var(--shadow);
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 500;
+    }
+
+    /* Dashboard Layout */
+    .dashboard {
+      display: flex;
+      max-width: 1200px;
+      margin: 20px auto;
+      gap: 20px;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+    }
+
+    .sidebar-menu li {
+      margin-bottom: 15px;
+    }
+
+    .sidebar-menu a {
+      color: var(--secondary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .sidebar-menu i {
+      margin-right: 10px;
+      color: var(--primary);
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+    }
+
+    /* Product Details */
+    .product-detail {
+      background: white;
+      border-radius: 8px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .product-header {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .product-image {
+      width: 300px;
+      height: 200px;
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+    }
+
+    .product-image i {
+      font-size: 60px;
+      color: #777;
+    }
+
+    .product-info h1 {
+      color: var(--secondary);
+      margin-top: 0;
+    }
+
+    .product-meta {
+      display: flex;
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .meta-item {
+      background: #f8f9fa;
+      padding: 10px 15px;
+      border-radius: 6px;
+    }
+
+    .meta-item strong {
+      color: var(--primary);
+    }
+
+    .promo-section {
+      background: #fff9f2;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 30px;
+      border: 1px solid #ffe8d4;
+    }
+
+    .promo-section h3 {
+      color: var(--primary);
+      margin-top: 0;
+    }
+
+    .promo-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .promo-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .promo-btn:hover {
+      background: var(--accent);
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .back-btn i {
+      margin-right: 5px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .dashboard {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+      }
+      .product-header {
+        flex-direction: column;
+      }
+      .product-image {
+        width: 100%;
+      }
+      .promo-links {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <div class="header-container">
+      <div class="logo">Affiliate Dashboard</div>
+      <div class="nav-links">
+        <a href="#"><i class="fas fa-home"></i> Home</a>
+        <a href="#"><i class="fas fa-chart-line"></i> Stats</a>
+        <a href="#"><i class="fas fa-wallet"></i> Earnings</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <ul class="sidebar-menu">
+        <li><a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+        <li><a href="#"><i class="fas fa-gift"></i> Products</a></li>
+        <li><a href="#"><i class="fas fa-link"></i> Links</a></li>
+        <li><a href="#"><i class="fas fa-envelope"></i> Emails</a></li>
+        <li><a href="#"><i class="fas fa-chart-pie"></i> Analytics</a></li>
+        <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <a href="./index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Products</a>
+      
+      <!-- Product Detail -->
+      <div class="product-detail">
+        <div class="product-header">
+          <div class="product-image">
+            <i class="fas fa-box-open"></i>
+          </div>
+          <div class="product-info">
+            <h1>Canva Pro Bundle</h1>
+            <p>Premium design assets and templates for Canva Pro users. Perfect for designers, marketers, and content creators looking to enhance their visual content.</p>
+            
+            <div class="product-meta">
+              <div class="meta-item">
+                <strong>Commission:</strong> 50%
+              </div>
+              <div class="meta-item">
+                <strong>Payout:</strong> $25-$50
+              </div>
+              <div class="meta-item">
+                <strong>Conversion:</strong> 3.2%
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-description">
+          <h2>Product Description</h2>
+          <p>This Canva Pro Bundle includes:</p>
+          <ul>
+            <li>500+ premium Canva templates for social media, presentations, and marketing materials</li>
+            <li>Exclusive design elements and graphics</li>
+            <li>Custom fonts and color palettes</li>
+            <li>Step-by-step design tutorials</li>
+            <li>Commercial license for all assets</li>
+          </ul>
+          
+          <h2>Why Promote This Product?</h2>
+          <ul>
+            <li>High demand from designers and marketers</li>
+            <li>Recurring commissions from subscription upgrades</li>
+            <li>Proven conversion rates</li>
+            <li>Professional swipe files and email sequences provided</li>
+          </ul>
+        </div>
+        
+        <div class="promo-section">
+          <h3><i class="fas fa-rocket"></i> Promotion Materials</h3>
+          <p>Use these ready-made links to promote the Canva Pro Bundle:</p>
+          
+          <div class="promo-links">
+            <button class="promo-btn" onclick="copyLink('main')">
+              <i class="fas fa-copy"></i> Main Affiliate Link
+            </button>
+            <button class="promo-btn" onclick="copyLink('email')">
+              <i class="fas fa-envelope"></i> Email Swipe
+            </button>
+            <button class="promo-btn" onclick="copyLink('banner')">
+              <i class="fas fa-image"></i> Banner Ads
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // Simulate copying affiliate links
+    function copyLink(type) {
+      let linkText = "";
+      switch(type) {
+        case 'main':
+          linkText = "https://example.com/affiliate/canva-pro";
+          break;
+        case 'email':
+          linkText = "https://example.com/swipes/canva-email";
+          break;
+        case 'banner':
+          linkText = "https://example.com/banners/canva-ads";
+          break;
+      }
+      
+      navigator.clipboard.writeText(linkText).then(() => {
+        alert(`${type} link copied to clipboard!`);
+      });
+    }
+    
+    // In a real implementation, you would load product data based on URL parameters
+    // For example: const productId = new URLSearchParams(window.location.search).get('id');
+  </script>
+</body>
+</html>

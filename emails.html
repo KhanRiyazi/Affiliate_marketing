@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Campaigns | Affiliate Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ==== CSS ==== */
+    :root {
+      --primary: #FF6B00; /* WarriorPlus orange */
+      --secondary: #333;
+      --accent: #FF9500;
+      --dark: #1a1a2e;
+      --light: #f8f9fa;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header */
+    .header {
+      background: var(--primary);
+      color: white;
+      padding: 15px 0;
+      box-shadow: var(--shadow);
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 500;
+    }
+
+    /* Dashboard Layout */
+    .dashboard {
+      display: flex;
+      max-width: 1200px;
+      margin: 20px auto;
+      gap: 20px;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar-menu li {
+      margin-bottom: 15px;
+    }
+
+    .sidebar-menu a {
+      color: var(--secondary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      padding: 8px 10px;
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+
+    .sidebar-menu a:hover {
+      background: #fff5ee;
+      color: var(--primary);
+    }
+
+    .sidebar-menu i {
+      margin-right: 10px;
+      color: var(--primary);
+      width: 20px;
+      text-align: center;
+    }
+
+    .sidebar-menu .active {
+      background: #fff5ee;
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+    }
+
+    /* Emails Section */
+    .emails-container {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .emails-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .emails-header h2 {
+      margin: 0;
+      color: var(--secondary);
+      display: flex;
+      align-items: center;
+    }
+
+    .emails-header h2 i {
+      margin-right: 10px;
+      color: var(--primary);
+    }
+
+    .new-email-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .new-email-btn:hover {
+      background: var(--accent);
+    }
+
+    /* Email Tabs */
+    .email-tabs {
+      display: flex;
+      border-bottom: 1px solid #eee;
+      margin-bottom: 20px;
+    }
+
+    .email-tab {
+      padding: 10px 20px;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      font-weight: 500;
+    }
+
+    .email-tab.active {
+      border-bottom-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* Email Campaigns */
+    .email-campaigns {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .campaign-card {
+      border: 1px solid #eee;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .campaign-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .campaign-header {
+      background: #f8f9fa;
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .campaign-header h3 {
+      margin: 0;
+      color: var(--secondary);
+    }
+
+    .campaign-body {
+      padding: 15px;
+    }
+
+    .campaign-stats {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .campaign-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .campaign-btn {
+      flex: 1;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .campaign-btn:hover {
+      background: var(--accent);
+    }
+
+    .campaign-btn.secondary {
+      background: #f0f0f0;
+      color: var(--secondary);
+    }
+
+    /* Email Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: white;
+      width: 600px;
+      max-width: 90%;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      padding: 20px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .modal-header h3 {
+      margin: 0;
+      color: var(--secondary);
+    }
+
+    .close-modal {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #999;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      border: none;
+    }
+
+    .btn-secondary {
+      background: #f0f0f0;
+      color: var(--secondary);
+      border: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .dashboard {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+      }
+      .email-tabs {
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <div class="header-container">
+      <div class="logo">Affiliate Dashboard</div>
+      <div class="nav-links">
+        <a href="#"><i class="fas fa-home"></i> Home</a>
+        <a href="#"><i class="fas fa-chart-line"></i> Stats</a>
+        <a href="#"><i class="fas fa-wallet"></i> Earnings</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <ul class="sidebar-menu">
+        <li><a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+        <li><a href="#"><i class="fas fa-gift"></i> Products</a></li>
+        <li><a href="#"><i class="fas fa-link"></i> Links</a></li>
+        <li><a href="#" class="active"><i class="fas fa-envelope"></i> Emails</a></li>
+        <li><a href="#"><i class="fas fa-chart-pie"></i> Analytics</a></li>
+        <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="emails-container">
+        <div class="emails-header">
+          <h2><i class="fas fa-envelope"></i> Email Campaigns</h2>
+          <button class="new-email-btn" id="newEmailBtn">
+            <i class="fas fa-plus"></i> New Campaign
+          </button>
+        </div>
+
+        <div class="email-tabs">
+          <div class="email-tab active">All Campaigns</div>
+          <div class="email-tab">Active</div>
+          <div class="email-tab">Drafts</div>
+          <div class="email-tab">Templates</div>
+        </div>
+
+        <div class="email-campaigns">
+          <!-- Campaign 1 -->
+          <div class="campaign-card">
+            <div class="campaign-header">
+              <h3>Canva Pro Bundle Launch</h3>
+            </div>
+            <div class="campaign-body">
+              <div class="campaign-stats">
+                <div class="stat-item">
+                  <div class="stat-value">24.5%</div>
+                  <div class="stat-label">Open Rate</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-value">8.2%</div>
+                  <div class="stat-label">CTR</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-value">14</div>
+                  <div class="stat-label">Sales</div>
+                </div>
+              </div>
+              <p>Email sequence for promoting the Canva Pro Bundle to design audiences.</p>
+              <div class="campaign-actions">
+                <button class="campaign-btn secondary" onclick="viewCampaign('canva')">
+                  <i class="fas fa-eye"></i> View
+                </button>
+                <button class="campaign-btn" onclick="sendTest('canva')">
+                  <i class="fas fa-paper-plane"></i> Send Test
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Campaign 2 -->
+          <div class="campaign-card">
+            <div class="campaign-header">
+              <h3>Affiliate Mastery Series</h3>
+            </div>
+            <div class="campaign-body">
+              <div class="campaign-stats">
+                <div class="stat-item">
+                  <div class="stat-value">31.2%</div>
+                  <div class="stat-label">Open Rate</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-value">12.7%</div>
+                  <div class="stat-label">CTR</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-value">27</div>
+                  <div class="stat-label">Sales</div>
+                </div>
+              </div>
+              <p>7-part email series teaching affiliate marketing fundamentals.</p>
+              <div class="campaign-actions">
+                <button class="campaign-btn secondary" onclick="viewCampaign('affiliate')">
+                  <i class="fas fa-eye"></i> View
+                </button>
+                <button class="campaign-btn" onclick="sendTest('affiliate')">
+                  <i class="fas fa-paper-plane"></i> Send Test
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Campaign 3 -->
+          <div class="campaign-card">
+            <div class="campaign-header">
+              <h3>YouTube Shorts Challenge</h3>
+            </div>
+            <div class="campaign-body">
+              <div class="campaign-stats">
+                <div class="stat-item">
+                  <div class="stat-value">-</div>
+                  <div class="stat-label">Open Rate</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-value">-</div>
+                  <div class="stat-label">CTR</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-value">-</div>
+                  <div class="stat-label">Sales</div>
+                </div>
+              </div>
+              <p>5-day challenge email sequence (draft).</p>
+              <div class="campaign-actions">
+                <button class="campaign-btn secondary" onclick="viewCampaign('youtube')">
+                  <i class="fas fa-eye"></i> View
+                </button>
+                <button class="campaign-btn" onclick="sendTest('youtube')">
+                  <i class="fas fa-paper-plane"></i> Send Test
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Email Modal -->
+  <div class="modal" id="emailModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3><i class="fas fa-plus-circle"></i> Create New Email Campaign</h3>
+        <button class="close-modal" id="closeModal">&times;</button>
+      </div>
+      
+      <div class="form-group">
+        <label for="campaign-name">Campaign Name</label>
+        <input type="text" id="campaign-name" placeholder="e.g. Product Launch Sequence">
+      </div>
+      
+      <div class="form-group">
+        <label for="campaign-product">Product</label>
+        <select id="campaign-product">
+          <option value="">Select a product</option>
+          <option value="canva">Canva Pro Bundle</option>
+          <option value="warrior">Affiliate Mastery</option>
+          <option value="youtube">YouTube Shorts Course</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="campaign-type">Campaign Type</label>
+        <select id="campaign-type">
+          <option value="sequence">Email Sequence</option>
+          <option value="broadcast">Single Broadcast</option>
+          <option value="autoresponder">Autoresponder</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="campaign-description">Description</label>
+        <textarea id="campaign-description" placeholder="Brief description of this campaign"></textarea>
+      </div>
+      
+      <div class="form-actions">
+        <button class="btn btn-secondary" id="cancelBtn">Cancel</button>
+        <button class="btn btn-primary" id="createCampaignBtn">Create Campaign</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // Modal functionality
+    const modal = document.getElementById('emailModal');
+    const newEmailBtn = document.getElementById('newEmailBtn');
+    const closeModal = document.getElementById('closeModal');
+    const cancelBtn = document.getElementById('cancelBtn');
+    
+    newEmailBtn.addEventListener('click', () => {
+      modal.style.display = 'flex';
+    });
+    
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+    
+    cancelBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+    
+    // Close modal when clicking outside
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+    
+    // Create new campaign
+    document.getElementById('createCampaignBtn').addEventListener('click', () => {
+      const name = document.getElementById('campaign-name').value;
+      const product = document.getElementById('campaign-product').value;
+      
+      if (!name || !product) {
+        alert('Please fill in all required fields');
+        return;
+      }
+      
+      alert(`New campaign "${name}" created for ${product} product`);
+      modal.style.display = 'none';
+      
+      // Reset form
+      document.getElementById('campaign-name').value = '';
+      document.getElementById('campaign-product').value = '';
+      document.getElementById('campaign-description').value = '';
+    });
+    
+    // Tab switching
+    document.querySelectorAll('.email-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.email-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        // In a real app, you would filter campaigns here
+      });
+    });
+    
+    // View campaign
+    function viewCampaign(id) {
+      alert(`Viewing campaign ${id}`);
+      // In a real app, this would open the campaign editor
+    }
+    
+    // Send test email
+    function sendTest(id) {
+      const email = prompt('Enter email address to send test to:');
+      if (email) {
+        alert(`Test email for campaign ${id} sent to ${email}`);
+      }
+    }
+  </script>
+</body>
+</html>
