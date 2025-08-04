@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WarriorPlus - Digital Product Marketplace</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ==== CSS ==== */
+    :root {
+      --primary: #FF6B00; /* WarriorPlus orange */
+      --primary-dark: #e05d00;
+      --secondary: #333;
+      --accent: #FF9500;
+      --dark: #1a1a2e;
+      --light: #f8f9fa;
+      --light-gray: #e9ecef;
+      --medium-gray: #adb5bd;
+      --dark-gray: #495057;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      color: var(--secondary);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--primary);
+    }
+
+    a:hover {
+      color: var(--primary-dark);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-weight: bold;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      color: white;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-large {
+      padding: 12px 30px;
+      font-size: 16px;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    /* Header */
+    .header {
+      background: white;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .logo-text {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--secondary);
+      margin-left: 20px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-links i {
+      margin-right: 5px;
+    }
+
+    .user-menu {
+      display: flex;
+      align-items: center;
+      margin-left: 20px;
+    }
+
+    .user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--light-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+      overflow: hidden;
+    }
+
+    .user-avatar img {
+      width: 100%;
+      height: auto;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: white;
+      padding: 60px 0;
+      margin-bottom: 40px;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .hero-buttons .btn {
+      min-width: 180px;
+    }
+
+    /* Main Content */
+    .main-content {
+      padding: 40px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title h2 {
+      font-size: 32px;
+      color: var(--secondary);
+      margin-bottom: 15px;
+    }
+
+    .section-title p {
+      color: var(--medium-gray);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Product Categories */
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .category-card {
+      background: white;
+      border-radius: 8px;
+      padding: 25px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .category-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .category-icon {
+      font-size: 40px;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .category-card h3 {
+      margin-bottom: 10px;
+    }
+
+    /* Featured Products */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .product-img {
+      height: 180px;
+      background: var(--light-gray);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--primary);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .product-info {
+      padding: 20px;
+    }
+
+    .product-info h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .product-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      font-size: 14px;
+      color: var(--medium-gray);
+    }
+
+    .product-price {
+      font-size: 20px;
+      font-weight: bold;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .product-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .product-actions .btn {
+      flex: 1;
+      padding: 8px 10px;
+      font-size: 14px;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      background: var(--light-gray);
+      padding: 60px 0;
+      margin: 40px 0;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .testimonial-card {
+      background: white;
+      border-radius: 8px;
+      padding: 25px;
+      box-shadow: var(--shadow);
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+
+    .testimonial-author img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+
+    .author-info h4 {
+      margin: 0 0 5px 0;
+    }
+
+    .author-info p {
+      margin: 0;
+      color: var(--medium-gray);
+      font-size: 14px;
+    }
+
+    /* Stats Section */
+    .stats {
+      background: var(--primary);
+      color: white;
+      padding: 60px 0;
+      text-align: center;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+
+    .stat-item h3 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    .stat-item p {
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--dark);
+      color: white;
+      padding: 60px 0 20px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col h3 {
+      color: white;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: var(--medium-gray);
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-links a {
+      color: white;
+      font-size: 20px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 20px;
+      text-align: center;
+      color: var(--medium-gray);
+      font-size: 14px;
+    }
+
+    /* Dashboard Styles */
+    .dashboard {
+      display: flex;
+      min-height: calc(100vh - 70px);
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background: var(--dark);
+      color: white;
+      padding: 20px 0;
+    }
+
+    .sidebar-header {
+      padding: 0 20px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .sidebar-menu {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+
+    .sidebar-menu li {
+      margin-bottom: 5px;
+    }
+
+    .sidebar-menu a {
+      display: flex;
+      align-items: center;
+      padding: 12px 20px;
+      color: rgba(255,255,255,0.8);
+      transition: all 0.3s;
+    }
+
+    .sidebar-menu a:hover, .sidebar-menu a.active {
+      background: rgba(255,255,255,0.1);
+      color: white;
+    }
+
+    .sidebar-menu i {
+      margin-right: 10px;
+      width: 20px;
+      text-align: center;
+    }
+
+    /* Dashboard Content */
+    .dashboard-content {
+      flex: 1;
+      padding: 30px;
+      background: var(--light-gray);
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .dashboard-title h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .dashboard-title p {
+      margin: 5px 0 0;
+      color: var(--medium-gray);
+    }
+
+    /* Stats Cards */
+    .stats-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-card h3 {
+      color: var(--primary);
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    .stat-card p {
+      color: var(--medium-gray);
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .stat-card .stat-change {
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .stat-card .stat-change.positive {
+      color: #28a745;
+    }
+
+    .stat-card .stat-change.negative {
+      color: #dc3545;
+    }
+
+    /* Recent Activity */
+    .activity-card {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      margin-bottom: 30px;
+    }
+
+    .activity-card h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+
+    .activity-item {
+      display: flex;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .activity-item:last-child {
+      border-bottom: none;
+    }
+
+    .activity-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--light-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      color: var(--primary);
+    }
+
+    .activity-content h4 {
+      margin: 0 0 5px 0;
+      font-size: 15px;
+    }
+
+    .activity-content p {
+      margin: 0;
+      color: var(--medium-gray);
+      font-size: 13px;
+    }
+
+    .activity-time {
+      color: var(--medium-gray);
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    /* Product Table */
+    .product-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .product-table th, .product-table td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .product-table th {
+      background: var(--light-gray);
+      font-weight: 600;
+    }
+
+    .product-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .product-table .btn {
+      padding: 5px 10px;
+      font-size: 13px;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .modal-header {
+      padding: 20px;
+      border-bottom: 1px solid var(--light-gray);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 {
+      margin: 0;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--medium-gray);
+    }
+
+    .modal-body {
+      padding: 20px;
+    }
+
+    .modal-footer {
+      padding: 15px 20px;
+      border-top: 1px solid var(--light-gray);
+      text-align: right;
+    }
+
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--light-gray);
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .stats-grid, .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .dashboard {
+        flex-direction: column;
+      }
+      
+      .sidebar {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+      }
+      
+      .nav-links {
+        margin-top: 15px;
+      }
+      
+      .hero h1 {
+        font-size: 32px;
+      }
+      
+      .hero-buttons {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .stats-cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 576px) {
+      .stats-grid, .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .stats-cards {
+        grid-template-columns: 1fr;
+      }
+      
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-container">
+      <div class="logo">
+        <img src="https://via.placeholder.com/40x40" alt="WarriorPlus Logo">
+        <span class="logo-text">WarriorPlus</span>
+      </div>
+      <div class="nav-links">
+        <a href="#"><i class="fas fa-home"></i> Home</a>
+        <a href="#"><i class="fas fa-fire"></i> Hot Offers</a>
+        <a href="#"><i class="fas fa-chart-line"></i> Marketplace</a>
+        <a href="#"><i class="fas fa-user-tie"></i> Affiliates</a>
+        <a href="#"><i class="fas fa-question-circle"></i> Help</a>
+        <div class="user-menu">
+          <div class="user-avatar">
+            <img src="https://via.placeholder.com/36x36" alt="User Avatar">
+          </div>
+          <span>John Doe</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Your Digital Product Marketplace</h1>
+        <p>Discover, promote, and sell digital products with the most powerful affiliate marketing platform in the world.</p>
+        <div class="hero-buttons">
+          <a href="#" class="btn btn-outline btn-large">Browse Products</a>
+          <a href="#" class="btn btn-primary btn-large">Join Free</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      <!-- Categories Section -->
+      <section class="section">
+        <div class="section-title">
+          <h2>Popular Categories</h2>
+          <p>Find products in your niche and start promoting today</p>
+        </div>
+        <div class="categories">
+          <div class="category-card">
+            <div class="category-icon">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+            <h3>Make Money Online</h3>
+            <p>Products that help people earn money from home</p>
+          </div>
+          <div class="category-card">
+            <div class="category-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Marketing</h3>
+            <p>Tools and training for better marketing</p>
+          </div>
+          <div class="category-card">
+            <div class="category-icon">
+              <i class="fas fa-heartbeat"></i>
+            </div>
+            <h3>Health & Fitness</h3>
+            <p>Digital products for health and wellness</p>
+          </div>
+          <div class="category-card">
+            <div class="category-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3>Education</h3>
+            <p>Courses and learning materials</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Products -->
+      <section class="section">
+        <div class="section-title">
+          <h2>Featured Products</h2>
+          <p>High-converting products with great commissions</p>
+        </div>
+        <div class="products-grid">
+          <!-- Product 1 -->
+          <div class="product-card">
+            <div class="product-img">
+              <img src="https://via.placeholder.com/400x300" alt="Product Image">
+              <div class="product-badge">HOT</div>
+            </div>
+            <div class="product-info">
+              <h3>Affiliate Marketing Mastery</h3>
+              <div class="product-meta">
+                <span><i class="fas fa-user"></i> John Smith</span>
+                <span><i class="fas fa-star"></i> 4.8 (120)</span>
+              </div>
+              <div class="product-price">$47</div>
+              <div class="product-actions">
+                <a href="#" class="btn btn-outline">Details</a>
+                <a href="#" class="btn btn-primary">Promote</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="product-card">
+            <div class="product-img">
+              <img src="https://via.placeholder.com/400x300" alt="Product Image">
+              <div class="product-badge">NEW</div>
+            </div>
+            <div class="product-info">
+              <h3>Canva Templates Bundle</h3>
+              <div class="product-meta">
+                <span><i class="fas fa-user"></i> Design Pro</span>
+                <span><i class="fas fa-star"></i> 4.9 (85)</span>
+              </div>
+              <div class="product-price">$29</div>
+              <div class="product-actions">
+                <a href="#" class="btn btn-outline">Details</a>
+                <a href="#" class="btn btn-primary">Promote</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="product-card">
+            <div class="product-img">
+              <img src="https://via.placeholder.com/400x300" alt="Product Image">
+            </div>
+            <div class="product-info">
+              <h3>YouTube Automation Course</h3>
+              <div class="product-meta">
+                <span><i class="fas fa-user"></i> Video Expert</span>
+                <span><i class="fas fa-star"></i> 4.7 (210)</span>
+              </div>
+              <div class="product-price">$97</div>
+              <div class="product-actions">
+                <a href="#" class="btn btn-outline">Details</a>
+                <a href="#" class="btn btn-primary">Promote</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 4 -->
+          <div class="product-card">
+            <div class="product-img">
+              <img src="https://via.placeholder.com/400x300" alt="Product Image">
+              <div class="product-badge">75% COMM</div>
+            </div>
+            <div class="product-info">
+              <h3>Email Marketing Secrets</h3>
+              <div class="product-meta">
+                <span><i class="fas fa-user"></i> Email Guru</span>
+                <span><i class="fas fa-star"></i> 4.6 (156)</span>
+              </div>
+              <div class="product-price">$67</div>
+              <div class="product-actions">
+                <a href="#" class="btn btn-outline">Details</a>
+                <a href="#" class="btn btn-primary">Promote</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section class="testimonials">
+        <div class="container">
+          <div class="section-title">
+            <h2>Success Stories</h2>
+            <p>What our users say about WarriorPlus</p>
+          </div>
+          <div class="testimonial-grid">
+            <div class="testimonial-card">
+              <div class="testimonial-text">
+                "WarriorPlus helped me launch my first digital product and make over $10,000 in my first month. The platform is incredibly easy to use and the support is amazing."
+              </div>
+              <div class="testimonial-author">
+                <img src="https://via.placeholder.com/50x50" alt="Author">
+                <div class="author-info">
+                  <h4>Sarah Johnson</h4>
+                  <p>Digital Product Creator</p>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="testimonial-text">
+                "As an affiliate, I've earned over $50,000 promoting products on WarriorPlus. The marketplace makes it so easy to find high-converting offers to promote."
+              </div>
+              <div class="testimonial-author">
+                <img src="https://via.placeholder.com/50x50" alt="Author">
+                <div class="author-info">
+                  <h4>Mike Thompson</h4>
+                  <p>Affiliate Marketer</p>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="testimonial-text">
+                "The WarriorPlus platform has everything I need to manage my product launches, affiliates, and customer delivery all in one place. It's saved me so much time and hassle."
+              </div>
+              <div class="testimonial-author">
+                <img src="https://via.placeholder.com/50x50" alt="Author">
+                <div class="author-info">
+                  <h4>David Chen</h4>
+                  <p>Online Entrepreneur</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Section -->
+      <section class="stats">
+        <div class="container">
+          <div class="stats-grid">
+            <div class="stat-item">
+              <h3>10K+</h3>
+              <p>Products</p>
+            </div>
+            <div class="stat-item">
+              <h3>50K+</h3>
+              <p>Affiliates</p>
+            </div>
+            <div class="stat-item">
+              <h3>$100M+</h3>
+              <p>Paid Out</p>
+            </div>
+            <div class="stat-item">
+              <h3>15+</h3>
+              <p>Years in Business</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="section text-center">
+        <h2>Ready to Get Started?</h2>
+        <p>Join thousands of entrepreneurs and affiliates making money online</p>
+        <div style="margin-top: 30px;">
+          <a href="#" class="btn btn-primary btn-large">Sign Up Free</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>WarriorPlus</h3>
+          <p>The leading digital product marketplace for entrepreneurs and affiliates.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Marketplace</h3>
+          <ul class="footer-links">
+            <li><a href="#">Browse Products</a></li>
+            <li><a href="#">Top Sellers</a></li>
+            <li><a href="#">New Releases</a></li>
+            <li><a href="#">Categories</a></li>
+            <li><a href="#">Deals</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Resources</h3>
+          <ul class="footer-links">
+            <li><a href="#">Affiliate Resources</a></li>
+            <li><a href="#">Seller Resources</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Webinars</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Company</h3>
+          <ul class="footer-links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 WarriorPlus. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Dashboard Modal (hidden by default) -->
+  <div id="dashboardModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Affiliate Dashboard</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- Dashboard Content -->
+        <div class="dashboard">
+          <!-- Sidebar -->
+          <div class="sidebar">
+            <div class="sidebar-header">
+              <div class="user-avatar">
+                <img src="https://via.placeholder.com/50x50" alt="User Avatar">
+              </div>
+              <h3>John Doe</h3>
+              <p>Affiliate Marketer</p>
+            </div>
+            <ul class="sidebar-menu">
+              <li><a href="#" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+              <li><a href="#"><i class="fas fa-gift"></i> Products</a></li>
+              <li><a href="#"><i class="fas fa-link"></i> Links</a></li>
+              <li><a href="#"><i class="fas fa-envelope"></i> Emails</a></li>
+              <li><a href="#"><i class="fas fa-chart-pie"></i> Analytics</a></li>
+              <li><a href="#"><i class="fas fa-wallet"></i> Earnings</a></li>
+              <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+          </div>
+
+          <!-- Dashboard Content -->
+          <div class="dashboard-content">
+            <div class="dashboard-header">
+              <div class="dashboard-title">
+                <h1>Affiliate Dashboard</h1>
+                <p>Welcome back, John! Here's your performance overview.</p>
+              </div>
+              <div>
+                <a href="#" class="btn btn-primary">Promote Products</a>
+              </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-cards">
+              <div class="stat-card">
+                <h3 id="earnings">$1,245.75</h3>
+                <p>Total Earnings</p>
+                <div class="stat-change positive">
+                  <i class="fas fa-arrow-up"></i> 12% from last month
+                </div>
+              </div>
+              <div class="stat-card">
+                <h3 id="clicks">2,487</h3>
+                <p>Clicks</p>
+                <div class="stat-change positive">
+                  <i class="fas fa-arrow-up"></i> 8% from last month
+                </div>
+              </div>
+              <div class="stat-card">
+                <h3 id="conversions">48</h3>
+                <p>Conversions</p>
+                <div class="stat-change negative">
+                  <i class="fas fa-arrow-down"></i> 5% from last month
+                </div>
+              </div>
+              <div class="stat-card">
+                <h3>3.2%</h3>
+                <p>Conversion Rate</p>
+                <div class="stat-change negative">
+                  <i class="fas fa-arrow-down"></i> 1.2% from last month
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="activity-card">
+              <h2>Recent Activity</h2>
+              <div class="activity-item">
+                <div class="activity-icon">
+                  <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div class="activity-content">
+                  <h4>New Sale: Affiliate Marketing Mastery</h4>
+                  <p>You earned $35.25 from this sale</p>
+                  <div class="activity-time">2 hours ago</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-icon">
+                  <i class="fas fa-link"></i>
+                </div>
+                <div class="activity-content">
+                  <h4>New Affiliate Link Created</h4>
+                  <p>Canva Templates Bundle</p>
+                  <div class="activity-time">5 hours ago</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-icon">
+                  <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <div class="activity-content">
+                  <h4>Payout Processed</h4>
+                  <p>$872.50 has been sent to your PayPal account</p>
+                  <div class="activity-time">Yesterday</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Top Performing Products -->
+            <div class="activity-card">
+              <h2>Top Performing Products</h2>
+              <table class="product-table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Clicks</th>
+                    <th>Conversions</th>
+                    <th>Earnings</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Affiliate Marketing Mastery</td>
+                    <td>1,245</td>
+                    <td>32</td>
+                    <td>$847.50</td>
+                    <td><a href="#" class="btn btn-outline">View</a></td>
+                  </tr>
+                  <tr>
+                    <td>Canva Templates Bundle</td>
+                    <td>876</td>
+                    <td>14</td>
+                    <td>$294.00</td>
+                    <td><a href="#" class="btn btn-outline">View</a></td>
+                  </tr>
+                  <tr>
+                    <td>YouTube Automation Course</td>
+                    <td>543</td>
+                    <td>9</td>
+                    <td>$104.25</td>
+                    <td><a href="#" class="btn btn-outline">View</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline modal-close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // Toggle Dashboard Modal
+    const modal = document.getElementById('dashboardModal');
+    const modalCloseButtons = document.querySelectorAll('.modal-close');
+    
+    // Open modal when clicking "Affiliates" in nav
+    document.querySelector('.nav-links a:nth-child(4)').addEventListener('click', function(e) {
+      e.preventDefault();
+      modal.style.display = 'flex';
+    });
+    
+    // Close modal when clicking close button or outside
+    modalCloseButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        modal.style.display = 'none';
+      });
+    });
+    
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+    
+    // Simulate stats tracking
+    function updateStats() {
+      // Randomly increment stats to simulate activity
+      const earningsElement = document.getElementById('earnings');
+      const clicksElement = document.getElementById('clicks');
+      const conversionsElement = document.getElementById('conversions');
+      
+      let earnings = parseFloat(earningsElement.textContent.replace('$', '').replace(',', ''));
+      let clicks = parseInt(clicksElement.textContent.replace(',', ''));
+      let conversions = parseInt(conversionsElement.textContent.replace(',', ''));
+      
+      // Random increment
+      clicks += Math.floor(Math.random() * 5);
+      if (Math.random() < 0.3) {
+        conversions += 1;
+        earnings += (Math.random() * 50 + 5).toFixed(2);
+      }
+      
+      // Update elements
+      clicksElement.textContent = clicks.toLocaleString();
+      conversionsElement.textContent = conversions.toLocaleString();
+      earningsElement.textContent = '$' + earnings.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    }
+    
+    // Update stats every 5-10 seconds
+    setInterval(updateStats, Math.random() * 5000 + 5000);
+    
+    // Initial update
+    updateStats();
+  </script>
+</body>
+</html>

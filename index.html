@@ -216,6 +216,7 @@
       overflow: hidden;
       box-shadow: var(--shadow);
       transition: all 0.3s;
+      cursor: pointer;
     }
 
     .project-card:hover {
@@ -348,6 +349,42 @@
       justify-content: center;
       margin: 0 auto 10px;
       color: var(--primary);
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .modal-content {
+      background-color: white;
+      width: 90%;
+      max-width: 800px;
+      border-radius: 8px;
+      padding: 2rem;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    
+    .close-modal {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: #666;
     }
 
     /* Responsive */
@@ -568,22 +605,114 @@
     </div>
   </div>
 
+  <!-- Project Modal -->
+  <div class="modal" id="projectModal">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeModal()">&times;</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
   <!-- JavaScript -->
   <script>
+    // Project data
+    const projects = {
+      'canva-templates': {
+        name: 'Social Media Template Pack',
+        description: 'This comprehensive pack includes 100+ professionally designed Canva templates for all your social media needs. Perfect for businesses, influencers, and marketers who want to maintain a consistent brand aesthetic across all platforms. The templates are fully customizable with your brand colors, fonts, and logos.',
+        features: [
+          '100+ unique designs for Instagram, Facebook, LinkedIn',
+          'Stories, posts, covers, and ads formats',
+          'Fully customizable in Canva',
+          'Commercial license included',
+          'Regular updates with new designs'
+        ],
+        price: '$47',
+        category: 'Canva Templates',
+        image: 'https://via.placeholder.com/800x500/ff6b00/ffffff?text=Social+Media+Templates'
+      },
+      'python-automation': {
+        name: 'Marketing Automation Tool',
+        description: 'This powerful Python-based tool automates repetitive marketing tasks, saving you hours of manual work each week. Schedule social media posts, automate email campaigns, collect and analyze data - all from one dashboard. No coding experience required to use the pre-built scripts, but fully customizable for developers.',
+        features: [
+          'Automated social media scheduling',
+          'Email campaign management',
+          'Data collection and analysis',
+          'Custom reporting dashboard',
+          'Browser extension for quick access'
+        ],
+        price: '$97',
+        category: 'Python Automation',
+        image: 'https://via.placeholder.com/800x500/ff9500/ffffff?text=Marketing+Automation'
+      },
+      'data-visualization': {
+        name: 'Data Visualization Dashboard',
+        description: 'Transform your complex data into beautiful, interactive visualizations with this dashboard tool. Connect multiple data sources, create custom charts and graphs, and share insights with your team. Perfect for marketers, analysts, and business owners who need to make data-driven decisions.',
+        features: [
+          'Real-time data visualization',
+          'Interactive charts and graphs',
+          'Multiple data source connections',
+          'Exportable reports (PDF, PNG, CSV)',
+          'Team collaboration features'
+        ],
+        price: '$67',
+        category: 'Data Visualization',
+        image: 'https://via.placeholder.com/800x500/ffad33/ffffff?text=Data+Dashboard'
+      }
+    };
+
+    // View project details in modal
+    function viewProject(projectId) {
+      const project = projects[projectId];
+      if (project) {
+        let featuresHTML = '';
+        project.features.forEach(feature => {
+          featuresHTML += `<li>${feature}</li>`;
+        });
+        
+        const modalHTML = `
+          <div style="display: flex; gap: 2rem; margin-bottom: 2rem;">
+            <div style="flex: 1;">
+              <img src="${project.image}" alt="${project.name}" style="width:100%; border-radius:8px;">
+            </div>
+            <div style="flex: 1;">
+              <h2 style="margin-top: 0;">${project.name}</h2>
+              <div style="font-size: 1.5rem; color: var(--primary); font-weight: bold; margin: 1rem 0;">${project.price}</div>
+              <button class="btn" style="width: 100%; margin-bottom: 1rem; background: var(--primary); color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer;">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              </button>
+              <button class="btn" style="width: 100%; background: white; color: var(--primary); border: 1px solid var(--primary); padding: 10px; border-radius: 4px; cursor: pointer;">
+                <i class="fas fa-credit-card"></i> Buy Now
+              </button>
+            </div>
+          </div>
+          <div>
+            <h3>Description</h3>
+            <p>${project.description}</p>
+            
+            <h3>Features</h3>
+            <ul style="padding-left: 20px; margin-bottom: 20px;">${featuresHTML}</ul>
+            
+            <h3>Category</h3>
+            <span style="display: inline-block; background: #f0f0f0; color: var(--dark); padding: 3px 8px; border-radius: 4px; font-size: 14px;">
+              ${project.category}
+            </span>
+          </div>
+        `;
+        
+        document.getElementById('modalContent').innerHTML = modalHTML;
+        document.getElementById('projectModal').style.display = 'flex';
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('projectModal').style.display = 'none';
+    }
+
     // Contact button functionality
     document.getElementById('contactBtn').addEventListener('click', function() {
-      alert("Let's connect! You can reach me at rizwan@example.com");
+      alert("Let's connect! You can reach me at rizwanrka826@gmail.com");
     });
-
-    // View project details
-    function viewProject(projectId) {
-      const projectNames = {
-        'canva-templates': 'Social Media Template Pack',
-        'python-automation': 'Marketing Automation Tool',
-        'data-visualization': 'Data Visualization Dashboard'
-      };
-      alert(`Opening project: ${projectNames[projectId]}`);
-    }
 
     // Navigation function
     function navigateTo(page) {
