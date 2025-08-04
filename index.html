@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,7 @@
   <style>
     /* ==== CSS ==== */
     :root {
-      --primary: #FF6B00; /* WarriorPlus orange */
+      --primary: #FF6B00;
       --secondary: #333;
       --accent: #FF9500;
       --dark: #1a1a2e;
@@ -138,7 +139,7 @@
 
     .welcome-badge {
       display: inline-block;
-      background: rgba(255,255,255,0.2);
+      background: rgba(255, 255, 255, 0.2);
       padding: 5px 10px;
       border-radius: 20px;
       font-size: 14px;
@@ -158,7 +159,7 @@
 
     .welcome-actions button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     /* Skills Showcase */
@@ -221,7 +222,7 @@
 
     .project-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
 
     .project-image {
@@ -336,7 +337,7 @@
 
     .quick-link-card:hover {
       transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     }
 
     .quick-link-icon {
@@ -359,12 +360,12 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0,0,0,0.8);
+      background-color: rgba(0, 0, 0, 0.8);
       z-index: 1000;
       justify-content: center;
       align-items: center;
     }
-    
+
     .modal-content {
       background-color: white;
       width: 90%;
@@ -375,7 +376,7 @@
       max-height: 90vh;
       overflow-y: auto;
     }
-    
+
     .close-modal {
       position: absolute;
       top: 1rem;
@@ -387,9 +388,24 @@
       color: #666;
     }
 
+    /* Specific styles for SEO/Ads project */
+    .project-badge[data-category="seo-ads"] {
+      background: #4285F4; /* Google blue */
+    }
+    
+    .project-tag[data-tag="google"] {
+      background: #EA4335; /* Google red */
+      color: white;
+    }
+    
+    .project-tag[data-tag="meta"] {
+      background: #1877F2; /* Facebook blue */
+      color: white;
+    }
+
     /* Responsive */
     @media (max-width: 1024px) {
-      .skills-showcase, 
+      .skills-showcase,
       .stats-grid,
       .quick-links {
         grid-template-columns: repeat(2, 1fr);
@@ -400,24 +416,29 @@
       .dashboard {
         flex-direction: column;
       }
+
       .sidebar {
         width: 100%;
       }
+
       .skills-showcase,
       .stats-grid,
       .quick-links {
         grid-template-columns: 1fr;
       }
+
       .welcome-banner {
         flex-direction: column;
         text-align: center;
       }
+
       .welcome-actions {
         margin-top: 15px;
       }
     }
   </style>
 </head>
+
 <body>
   <!-- Header -->
   <div class="header">
@@ -444,7 +465,7 @@
         <li><a href="./analytics.html"><i class="fas fa-chart-line"></i> Analytics</a></li>
         <li><a href="./settings.html"><i class="fas fa-cog"></i> Settings</a></li>
       </ul>
-      
+
       <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
         <h4 style="margin-bottom: 15px; color: var(--secondary);">Skills</h4>
         <div style="display: flex; flex-wrap: wrap; gap: 5px;">
@@ -549,6 +570,23 @@
             </div>
           </div>
         </div>
+
+        <!-- Project 4 -->
+        <div class="project-card" onclick="viewProject('seo-ads')">
+          <div class="project-image">
+            <i class="fas fa-ad" style="font-size: 40px;"></i>
+            <span class="project-badge" data-category="seo-ads">SEO/Ads</span>
+          </div>
+          <div class="project-info">
+            <h3>SEO & Ad Campaign Suite</h3>
+            <p>Comprehensive tools for Google Ads, Meta Ads, and SEO optimization</p>
+            <div class="project-tags">
+              <span class="project-tag" data-tag="google">Google Ads</span>
+              <span class="project-tag" data-tag="meta">Meta Ads</span>
+              <span class="project-tag">SEO</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Stats Section -->
@@ -629,7 +667,7 @@
         ],
         price: '$47',
         category: 'Canva Templates',
-        image: 'https://via.placeholder.com/800x500/ff6b00/ffffff?text=Social+Media+Templates'
+        image: './img/template.png'
       },
       'python-automation': {
         name: 'Marketing Automation Tool',
@@ -643,7 +681,8 @@
         ],
         price: '$97',
         category: 'Python Automation',
-        image: 'https://via.placeholder.com/800x500/ff9500/ffffff?text=Marketing+Automation'
+        image: './img/automatio.png',
+        github: 'https://github.com/KhanRiyazi/email_API'
       },
       'data-visualization': {
         name: 'Data Visualization Dashboard',
@@ -658,6 +697,20 @@
         price: '$67',
         category: 'Data Visualization',
         image: 'https://via.placeholder.com/800x500/ffad33/ffffff?text=Data+Dashboard'
+      },
+      'seo-ads': {
+        name: 'SEO & Ad Campaign Suite',
+        description: 'A complete solution for managing and optimizing your Google Ads, Meta Ads, and SEO campaigns. This suite includes tools for keyword research, ad creation, performance tracking, and automated optimizations to maximize your advertising ROI.',
+        features: [
+          'Google Ads campaign manager',
+          'Meta Ads creation and scheduling',
+          'SEO keyword research tools',
+          'Performance analytics dashboard',
+          'Automated bid adjustments'
+        ],
+        price: '$87',
+        category: 'Digital Marketing',
+        image: './img/ads.png'
       }
     };
 
@@ -669,7 +722,7 @@
         project.features.forEach(feature => {
           featuresHTML += `<li>${feature}</li>`;
         });
-        
+
         const modalHTML = `
           <div style="display: flex; gap: 2rem; margin-bottom: 2rem;">
             <div style="flex: 1;">
@@ -697,9 +750,14 @@
             <span style="display: inline-block; background: #f0f0f0; color: var(--dark); padding: 3px 8px; border-radius: 4px; font-size: 14px;">
               ${project.category}
             </span>
+            ${project.github ? `<div style="margin-top: 15px;">
+              <a href="${project.github}" target="_blank" style="color: var(--primary); text-decoration: none;">
+                <i class="fab fa-github"></i> View on GitHub
+              </a>
+            </div>` : ''}
           </div>
         `;
-        
+
         document.getElementById('modalContent').innerHTML = modalHTML;
         document.getElementById('projectModal').style.display = 'flex';
       }
