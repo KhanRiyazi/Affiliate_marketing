@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Finder - Canva Designer & Python Developer (India)</title>
+    <style>
+        :root {
+            --primary-color: #0a66c2; /* LinkedIn blue */
+            --secondary-color: #1d4354; /* Naukri dark blue */
+            --accent-color: #2557a7; /* Indeed blue */
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #4bb543;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .search-section {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin: -30px auto 40px;
+            max-width: 900px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .search-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .search-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .search-select {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            background-color: white;
+        }
+        
+        .search-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .search-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        .job-portals {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .portal-btn {
+            background-color: var(--light-color);
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .portal-btn:hover, .portal-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .portal-btn.linkedin { border-left: 3px solid #0a66c2; }
+        .portal-btn.naukri { border-left: 3px solid #1d4354; }
+        .portal-btn.indeed { border-left: 3px solid #2557a7; }
+        .portal-btn.monster { border-left: 3px solid #6e1d52; }
+        .portal-btn.foundit { border-left: 3px solid #f26923; } /* formerly Monster India */
+        
+        .jobs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            padding: 20px 0;
+        }
+        
+        .job-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+        }
+        
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .job-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .job-title {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: var(--dark-color);
+        }
+        
+        .job-company {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+        
+        .job-type {
+            display: inline-block;
+            padding: 3px 10px;
+            background-color: #e3f2fd;
+            color: var(--primary-color);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .job-body {
+            padding: 20px;
+        }
+        
+        .job-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .skill-tag {
+            background-color: #f0f0f0;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        .job-description {
+            color: #555;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .job-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #f9f9f9;
+        }
+        
+        .job-location, .job-date {
+            color: #777;
+            font-size: 0.85rem;
+        }
+        
+        .apply-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+        
+        .apply-btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .no-jobs {
+            text-align: center;
+            padding: 50px;
+            grid-column: 1 / -1;
+            color: #666;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            background-color: var(--dark-color);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .search-form {
+                flex-direction: column;
+            }
+            
+            .jobs-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Find Jobs in India</h1>
+            <p class="tagline">Search for Canva Designer and Python Automation Developer positions on LinkedIn, Naukri.com, and other Indian job portals</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="search-section">
+            <form id="jobSearchForm" class="search-form">
+                <input type="text" id="jobSearchInput" class="search-input" placeholder="Job title (Canva Designer, Python Automation etc.)">
+                <select id="jobLocation" class="search-select">
+                    <option value="india">India</option>
+                    <option value="remote">Remote (India)</option>
+                    <option value="bangalore">Bangalore</option>
+                    <option value="delhi">Delhi/NCR</option>
+                    <option value="mumbai">Mumbai</option>
+                    <option value="hyderabad">Hyderabad</option>
+                    <option value="chennai">Chennai</option>
+                    <option value="pune">Pune</option>
+                </select>
+                <select id="jobType" class="search-select">
+                    <option value="">Any type</option>
+                    <option value="fulltime">Full-time</option>
+                    <option value="parttime">Part-time</option>
+                    <option value="contract">Contract</option>
+                    <option value="internship">Internship</option>
+                </select>
+                <button type="submit" class="search-btn">Search Jobs</button>
+            </form>
+            
+            <div class="job-portals">
+                <div class="portal-btn linkedin active" data-portal="linkedin">
+                    <span>LinkedIn</span>
+                </div>
+                <div class="portal-btn naukri" data-portal="naukri">
+                    <span>Naukri.com</span>
+                </div>
+                <div class="portal-btn indeed" data-portal="indeed">
+                    <span>Indeed</span>
+                </div>
+                <div class="portal-btn monster" data-portal="monster">
+                    <span>Monster</span>
+                </div>
+                <div class="portal-btn foundit" data-portal="foundit">
+                    <span>Foundit</span>
+                </div>
+            </div>
+        </div>
+        
+        <div id="jobsContainer" class="jobs-container">
+            <!-- Jobs will be loaded here dynamically -->
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2023 Job Finder for Designers & Developers - India</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">Note: This is a demo interface. Clicking "Apply" will redirect you to the actual job portal.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sample job data for India
+            const jobs = [
+                {
+                    id: 1,
+                    title: "Canva Graphic Designer",
+                    company: "Social Media Marketing Agency",
+                    type: "fulltime",
+                    location: "bangalore",
+                    date: "Posted 2 days ago",
+                    skills: ["Canva", "Graphic Design", "Social Media", "Branding"],
+                    description: "Looking for a creative Canva designer to create social media posts, banners, and marketing materials for our clients. Minimum 1 year experience with Canva required.",
+                    salary: "₹3L - ₹5L PA",
+                    portal: "linkedin",
+                    url: "https://www.linkedin.com/jobs/view/123456789"
+                },
+                {
+                    id: 2,
+                    title: "Python Automation Engineer",
+                    company: "Tech Solutions India Pvt Ltd",
+                    type: "fulltime",
+                    location: "hyderabad",
+                    date: "Posted 1 week ago",
+                    skills: ["Python", "Automation", "Selenium", "API Integration"],
+                    description: "We need a Python developer to automate business processes and build internal tools. Strong knowledge of Python scripting and automation frameworks required.",
+                    salary: "₹6L - ₹9L PA",
+                    portal: "naukri",
+                    url: "https://www.naukri.com/job-listings-python-automation-engineer-tech-solutions-india-pvt-ltd-hyderabad-1-to-4-years-1234567890"
+                },
+                {
+                    id: 3,
+                    title: "Canva Template Designer (Remote)",
+                    company: "Digital Marketing Startup",
+                    type: "contract",
+                    location: "remote",
+                    date: "Posted 3 days ago",
+                    skills: ["Canva", "Template Design", "Social Media Graphics"],
+                    description: "Create reusable Canva templates for our SaaS product. This is a remote position open to candidates across India.",
+                    salary: "₹25,000 - ₹40,000 per month",
+                    portal: "indeed",
+                    url: "https://www.indeed.com/viewjob?jk=123456789abcdef"
+                },
+                {
+                    id: 4,
+                    title: "Python Automation Developer",
+                    company: "IT Services MNC",
+                    type: "fulltime",
+                    location: "pune",
+                    date: "Posted 5 days ago",
+                    skills: ["Python", "Automation", "Django", "Flask", "REST APIs"],
+                    description: "Looking for Python developers with automation experience to join our team in Pune. 2+ years experience required.",
+                    salary: "₹5L - ₹8L PA",
+                    portal: "monster",
+                    url: "https://www.monsterindia.com/job/python-automation-developer-123456789.html"
+                },
+                {
+                    id: 5,
+                    title: "Graphic Designer (Canva Expert)",
+                    company: "E-commerce Company",
+                    type: "fulltime",
+                    location: "delhi",
+                    date: "Posted 1 day ago",
+                    skills: ["Canva", "Adobe Photoshop", "Illustrator", "Brand Identity"],
+                    description: "We need a Canva expert to design product images, social media content, and marketing materials for our e-commerce platform.",
+                    salary: "₹4L - ₹6L PA",
+                    portal: "foundit",
+                    url: "https://www.foundit.in/job/graphic-designer-canva-expert-delhi-123456789"
+                },
+                {
+                    id: 6,
+                    title: "Python Scripting Specialist",
+                    company: "Automation Consulting Firm",
+                    type: "contract",
+                    location: "remote",
+                    date: "Posted 2 weeks ago",
+                    skills: ["Python", "Scripting", "Task Automation", "Bash"],
+                    description: "Looking for a Python expert to write automation scripts for our clients. This is a remote position with flexible hours.",
+                    salary: "₹50,000 - ₹80,000 per month",
+                    portal: "linkedin",
+                    url: "https://www.linkedin.com/jobs/view/987654321"
+                }
+            ];
+            
+            // DOM elements
+            const jobsContainer = document.getElementById('jobsContainer');
+            const jobSearchForm = document.getElementById('jobSearchForm');
+            const jobSearchInput = document.getElementById('jobSearchInput');
+            const jobLocation = document.getElementById('jobLocation');
+            const jobType = document.getElementById('jobType');
+            const portalBtns = document.querySelectorAll('.portal-btn');
+            
+            // Display all jobs initially
+            displayJobs(jobs);
+            
+            // Portal buttons event listeners
+            portalBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    portalBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const portal = this.dataset.portal;
+                    filterJobsByPortal(portal);
+                });
+            });
+            
+            // Form submission
+            jobSearchForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                filterJobs();
+            });
+            
+            // Filter jobs by search criteria
+            function filterJobs() {
+                const searchTerm = jobSearchInput.value.toLowerCase();
+                const location = jobLocation.value;
+                const type = jobType.value;
+                const activePortal = document.querySelector('.portal-btn.active').dataset.portal;
+                
+                const filteredJobs = jobs.filter(job => {
+                    const matchesSearch = job.title.toLowerCase().includes(searchTerm) || 
+                                         job.company.toLowerCase().includes(searchTerm) || 
+                                         job.description.toLowerCase().includes(searchTerm) ||
+                                         job.skills.some(skill => skill.toLowerCase().includes(searchTerm));
+                    
+                    const matchesLocation = !location || job.location === location;
+                    const matchesType = !type || job.type === type;
+                    const matchesPortal = activePortal === 'all' || job.portal === activePortal;
+                    
+                    return matchesSearch && matchesLocation && matchesType && matchesPortal;
+                });
+                
+                displayJobs(filteredJobs);
+            }
+            
+            // Filter jobs by portal
+            function filterJobsByPortal(portal) {
+                if (portal === 'all') {
+                    displayJobs(jobs);
+                    return;
+                }
+                
+                const filteredJobs = jobs.filter(job => job.portal === portal);
+                displayJobs(filteredJobs);
+            }
+            
+            // Display jobs in the UI
+            function displayJobs(jobsToDisplay) {
+                if (jobsToDisplay.length === 0) {
+                    jobsContainer.innerHTML = `
+                        <div class="no-jobs">
+                            <h3>No jobs found</h3>
+                            <p>Try adjusting your search criteria or select a different job portal</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                jobsContainer.innerHTML = jobsToDisplay.map(job => `
+                    <div class="job-card" style="border-top-color: ${getPortalColor(job.portal)}">
+                        <div class="job-header">
+                            <h3 class="job-title">${job.title}</h3>
+                            <p class="job-company">${job.company}</p>
+                            <span class="job-type">${formatJobType(job.type)}</span>
+                        </div>
+                        <div class="job-body">
+                            <div class="job-skills">
+                                ${job.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                            </div>
+                            <p class="job-description">${job.description}</p>
+                            <p><strong>Salary:</strong> ${job.salary}</p>
+                        </div>
+                        <div class="job-footer">
+                            <span class="job-location">${formatLocation(job.location)}</span>
+                            <span class="job-date">${job.date}</span>
+                            <button class="apply-btn" data-url="${job.url}">Apply Now</button>
+                        </div>
+                    </div>
+                `).join('');
+                
+                // Add event listeners to apply buttons
+                document.querySelectorAll('.apply-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const jobUrl = this.dataset.url;
+                        window.open(jobUrl, '_blank');
+                    });
+                });
+            }
+            
+            // Get color for job portal
+            function getPortalColor(portal) {
+                const colors = {
+                    'linkedin': '#0a66c2',
+                    'naukri': '#1d4354',
+                    'indeed': '#2557a7',
+                    'monster': '#6e1d52',
+                    'foundit': '#f26923'
+                };
+                return colors[portal] || '#4361ee';
+            }
+            
+            // Format job type for display
+            function formatJobType(type) {
+                const types = {
+                    'fulltime': 'Full-time',
+                    'parttime': 'Part-time',
+                    'contract': 'Contract',
+                    'internship': 'Internship'
+                };
+                return types[type] || type;
+            }
+            
+            // Format location for display
+            function formatLocation(location) {
+                const locations = {
+                    'remote': 'Remote (India)',
+                    'india': 'India',
+                    'bangalore': 'Bangalore',
+                    'delhi': 'Delhi/NCR',
+                    'mumbai': 'Mumbai',
+                    'hyderabad': 'Hyderabad',
+                    'chennai': 'Chennai',
+                    'pune': 'Pune'
+                };
+                return locations[location] || location;
+            }
+        });
+    </script>
+</body>
+</html>
