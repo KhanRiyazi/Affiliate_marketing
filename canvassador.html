@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empower Canvassador Program</title>
+    <style>
+        :root {
+            --primary-color: #00c4cc;
+            --secondary-color: #7d2ae8;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        body {
+            background-color: white;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #6C63FF, #4D44DB);
+            color: white;
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+        
+        .back-link svg {
+            margin-right: 8px;
+        }
+        
+        h1 {
+            font-size: 60px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            font-size: 38px;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .text-content {
+            font-size: 17px;
+            line-height: 1.8;
+        }
+        
+        .text-content p {
+            margin-bottom: 20px;
+        }
+        
+        .text-content ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .text-content li {
+            margin-bottom: 10px;
+        }
+        
+        .image-placeholder {
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .value-card {
+            text-align: center;
+        }
+        
+        .value-icon {
+            width: 150px;
+            height: 150px;
+            background-color: #f0f0f0;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .value-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .value-description {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .apply-section {
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 100px 0;
+        }
+        
+        .apply-button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .apply-button:hover {
+            background-color: #6a1fc1;
+            transform: translateY(-2px);
+        }
+        
+        .footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            h1 {
+                font-size: 40px;
+            }
+            
+            .section-title {
+                font-size: 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="https://public.canva.site/2023-canvassador-applications" class="back-link">
+                <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.5 15L1.5 8L8.5 1" stroke="#00C4CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Back to community programs
+            </a>
+            <h1>Apply to become an Empower Community Canvassador!</h1>
+        </div>
+    </header>
+    
+    <section class="section">
+        <div class="container">
+            <div class="content-grid">
+                <div class="text-content">
+                    <h2 class="section-title">What is the Empower Canvassador program?</h2>
+                    <p>Thanks for your interest in our exciting new Empower Canvassador program!</p>
+                    <p>The program's primary mission is to empower content creators who consistently create engaging content and tutorials around Canva's products and features.</p>
+                    <p>Empower Canvassadors excel in simplifying complex tasks on Canva, creating a variety of tutorials around our products & features that make it easy for others to understand and upskill effortlessly. Program members gain access to valuable resources that will support and enhance their content creation efforts.</p>
+                    <p>Together, we will work towards empowering the world to unleash their creativity through design!</p>
+                </div>
+                <div class="image-placeholder">
+                   <img src="./img/me.png" width="390 px" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section" style="background-color: #f8f9fa;">
+        <div class="container">
+            <div class="content-grid">
+                <div class="image-placeholder">
+                  <img src="./img/automatio.png" width="600 px" alt="">
+                </div>
+                <div class="text-content">
+                    <h2 class="section-title">Who makes a great Empower Canvassador?</h2>
+                    <p>We're looking for community members who consistently create engaging social media content and tutorials around Canva's products and features.</p>
+                    <ul>
+                        <li>Live the Canva Values</li>
+                        <li>Be an independent creator (not a brand or agency)</li>
+                        <li>Have an active and engaged social media audience</li>
+                        <li>Create and share at least one Canva-related tutorial or feature each month</li>
+                        <li>Agree to abide by Canva's branding and NDA guidelines</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section">
+        <div class="container">
+            <div class="content-grid">
+                <div class="text-content">
+                    <h2 class="section-title">Which platforms are we currently working with?</h2>
+                    <p>We are currently collaborating with community members who create content on the following social platforms:</p>
+                    <ul>
+                        <li>Instagram</li>
+                        <li>Twitter</li>
+                        <li>TikTok</li>
+                        <li>YouTube</li>
+                        <li>Facebook</li>
+                        <li>LinkedIn</li>
+                    </ul>
+                    <p>We'll begin to add more channels as the program evolves!</p>
+                </div>
+                <div class="image-placeholder">
+                    <img src="./img/marketing.png" width="600 px" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section" style="background-color: #f8f9fa;">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center;">Our Canva Community values</h2>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">[Icon]</div>
+                    <h3 class="value-title">Be a good human</h3>
+                    <p class="value-description">You're warm, friendly, mindful of our guidelines, and carry yourself with kindness and acceptance.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">[Icon]</div>
+                    <h3 class="value-title">Empower others</h3>
+                    <p class="value-description">You're an amazing role model to the community, and inspire the best in others.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">[Icon]</div>
+                    <h3 class="value-title">Make complex things simple</h3>
+                    <p class="value-description">You share your wisdom, and go out of your way to break down barriers for others.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">[Icon]</div>
+                    <h3 class="value-title">Be a force for good</h3>
+                    <p class="value-description">You give kudos, and genuinely make the community a better, more welcoming place.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section">
+        <div class="container">
+            <div class="content-grid">
+                <div class="image-placeholder">
+                   <img src="./img/flyer.png" width="500 px" alt="">
+                </div>
+                <div class="text-content">
+                    <h2 class="section-title">What are some of the perks of joining?</h2>
+                    <p>These are just some of the things our Empower Canvassadors get to enjoy while being a part of the program:</p>
+                    <ul>
+                        <li>Special Canvassador badge</li>
+                        <li>Opportunities to participate in beta tests</li>
+                        <li>Educational workshops and webinars</li>
+                        <li>Highlights featuring recent releases and updates</li>
+                        <li>Affiliate perks (earn commissions on Canva Pro conversions)</li>
+                    </ul>
+                    <p>Additional benefits will be added along the way!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="apply-section">
+        <div class="container">
+            <h2 class="section-title">This is great! So how do I join?</h2>
+            <p>Applications for this program are currently closed—but don't worry, they'll be reopening soon! Check back regularly for updates and details.</p>
+            <a href="#" class="apply-button">Apply now</a>
+        </div>
+    </section>
+    
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center;">Be sure to check out our other amazing Canvassador programs!</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">From moderators to local leaders, we have a variety of Canvassador members to highlight our amazing community members. Click below to see what's currently available!</p>
+            <div style="text-align: center;">
+                <a href="#" class="apply-button" style="background-color: var(--primary-color);">See programs</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>© 2023 Canva. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Handle apply button state
+            const applyButton = document.querySelector('.apply-button');
+            if (applyButton) {
+                applyButton.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') === '#') {
+                        e.preventDefault();
+                        alert('Applications are currently closed. Please check back later!');
+                    }
+                });
+            }
+            
+            // Track section visibility for analytics
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        console.log(`Section entered view: ${entry.target.querySelector('.section-title')?.textContent}`);
+                        // In a real implementation, you would send this data to your analytics platform
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
